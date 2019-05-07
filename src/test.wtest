@@ -1,0 +1,30 @@
+import cosas.*
+import camion.*
+test "prueba agregar cosas"{
+	camion.cosas()
+	assert.equals(1000==camion.pesoTotal())
+}
+test "prueba si el camion tiene algo qe pesa entre x e y "{
+	residuosRadioactivos.peso(1)
+	camion.cargar(residuosRadioactivos)
+	assert.notThat(camion.tieneAlgoQuePesaEntre(2,9))
+}
+test "cosa mas pesada del camion "{
+	camion.cargar(residuosRadioactivos)
+	assert.equals(residuosRadioactivos==camion.cosaMasPesada())
+}
+test "cuando cargan algo al camion"{
+	camion.cargar(paqueteDeLadrillos)
+	assert.equals(14==paqueteDeLadrillos.cantidadLadrillos())
+}
+test "peso Total de carga del camion"{
+	camion.cargar(paqueteDeLadrillos)
+	camion.cargar(residuosRadioactivos)
+	assert.equals(24==camion.pesoTotal())
+}
+test "objetos peligrosos"{
+	camion.cargar(paqueteDeLadrillos)
+	camion.cargar(residuosRadioactivos)
+	camion.cargar(bateriaAntiaerea)
+	assert.equals([residuosRadioactivos,bateriaAntiaerea ]==camion.objetosPeligrosos(10))
+}
