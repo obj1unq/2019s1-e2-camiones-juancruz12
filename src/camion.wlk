@@ -30,7 +30,7 @@ object camion {
 		return cosas.filter({carga=>carga.nivelPeligrosidad()>cosa.nivelPeligrosidad()})
 	}
 	method puedeCircularEnRuta(nivelMaximoPeligrosidad){
-		return cosas.any({cosa=>cosa.nivelPeligrosidad()>=nivelMaximoPeligrosidad})
+		return not cosas.any({cosa=>cosa.nivelPeligrosidad()>=nivelMaximoPeligrosidad})//agregue el not para que de true cuando puede circular y false cuandno no 
 	}
 	method tieneAlgoQuePesaEntre(min, max){
 		return cosas.any({cosa=>cosa.peso().between(min,max)})
