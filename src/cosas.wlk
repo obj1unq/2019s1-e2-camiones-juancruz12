@@ -32,7 +32,7 @@ object paqueteDeLadrillos{
 		return 2
 	}
 	method bultoQueOcupa(){
-		
+		return (cantidadLadrillos/100).roundUp()
 	}
 	method cuandoLoCarganAlCamion(){
 		cantidadLadrillos+=12

@@ -60,3 +60,8 @@ test " lista de pesos "{
 	camion.cargar(bateriaAntiaerea)
 	assert.equals([20,300]==camion.pesos())
 }
+test "bultos que ocupan las cosas"{
+	paqueteDeLadrillos.cantidadLadrillos(103)
+	camion.cargar(paqueteDeLadrillos)
+	assert.equals(2==camion.totalBultos())
+}
