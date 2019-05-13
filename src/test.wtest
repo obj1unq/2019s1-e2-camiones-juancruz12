@@ -65,3 +65,8 @@ test "bultos que ocupan las cosas"{
 	camion.cargar(paqueteDeLadrillos)
 	assert.equals(2==camion.totalBultos())
 }
+test "cantBultos"{
+	camion.cargar(knightRider)
+	camion.cargar(new PaqueteDeLadrillos(cantLadrillos=80))
+	 assert.equals(5,camion.cantBultos())
+}

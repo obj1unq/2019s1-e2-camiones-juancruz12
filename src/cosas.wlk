@@ -1,3 +1,4 @@
+import camion.*
 object knightRider {
 	method peso() { return 500 }
 	method nivelPeligrosidad() { return 10 }
@@ -75,8 +76,8 @@ object contenedorPortuario{
 		return 100+ cosasDentro.sum({cosa=>cosa.peso()})
 	}
 	method nivelPeligrosidad(){
-		if(cosasDentro==[ ]){return 0}
-		else{return cosasDentro.max({cosa=>cosa.nivelPeligrosidad()}).nivelPeligrosidad()}  //consulta
+		if(cosasDentro==[ ]){return 0}//cosasDentro.isEmpty()
+		else{return cosasDentro.max({cosa=>cosa.nivelPeligrosidad()}).nivelPeligrosidad()}  
 	}
 	method bultoQueOcupa(){
 		return 1+cosasDentro.sum({cosa=>cosa.bultoQueOcupa()})
@@ -112,4 +113,27 @@ object embalajeDeSeguridad{
 	method cuandoLoCarganAlCamion(){
 		return null
 	}
+}
+///////////////////////////////////////CLASES//////////////////////////////////////////////
+class PaqueteDeLadrillos{
+	var property cantidadLadrillos=2
+	var peso=2*cantidadLadrillos
+	method peso(){
+		return peso
+	}
+	method nivelPeligrosidad(){
+		return 2
+	}
+	method bultoQueOcupa(){
+		return (cantidadLadrillos/100).roundUp()
+	}
+	method cuandoLoCarganAlCamion(){
+		cantidadLadrillos+=12
+	}
+}
+ object otroPaquetote{
+ 	
+camion.cargar(var otroPaquetote=new PaqueteDeLadrillos(cantLadrillos=40))
+}
+
 }

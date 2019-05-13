@@ -29,7 +29,7 @@ object camion {
 	method objetosMasPeligrososQue(cosa){
 		return cosas.filter({carga=>carga.nivelPeligrosidad()>cosa.nivelPeligrosidad()})
 	}
-	method puedeCircularEnRuta(nivelMaximoPeligrosidad){
+	method puedeCircularEnRuta(nivelMaximoPeligrosidad){  //si uso el all no me hace falta escribir el not
 		return not cosas.any({cosa=>cosa.nivelPeligrosidad()>=nivelMaximoPeligrosidad})//agregue el not para que de true cuando puede circular y false cuandno no 
 	}
 	method tieneAlgoQuePesaEntre(min, max){
