@@ -1,0 +1,72 @@
+import cosas.*
+import camion.*
+test "prueba agregar cosas"{
+	camion.cosas()
+	assert.equals(1000==camion.pesoTotal())
+}
+test "descargar cosas"{
+	camion.cargar(residuosRadioactivos)
+	camion.descargar(residuosRadioactivos)
+	assert.equals([]==camion.cosas())
+}
+test "prueba si el camion tiene algo qe pesa entre x e y "{
+	residuosRadioactivos.peso(1)
+	camion.cargar(residuosRadioactivos)
+	assert.notThat(camion.tieneAlgoQuePesaEntre(2,9))
+}
+test "cosa mas pesada del camion "{
+	camion.cargar(residuosRadioactivos)
+	assert.equals(residuosRadioactivos==camion.cosaMasPesada())
+}
+test "cuando cargan algo al camion"{
+	camion.cargar(paqueteDeLadrillos)
+	assert.equals(14==paqueteDeLadrillos.cantidadLadrillos())
+}
+test "peso Total de carga del camion"{
+	camion.cargar(paqueteDeLadrillos)
+	camion.cargar(residuosRadioactivos)
+	assert.equals(24==camion.pesoTotal())
+}
+test "objetos peligrosos"{
+	camion.cargar(paqueteDeLadrillos)
+	camion.cargar(residuosRadioactivos)
+	camion.cargar(bateriaAntiaerea)
+	assert.equals([residuosRadioactivos,bateriaAntiaerea ]==camion.objetosPeligrosos(10))
+}
+test "prueba si esta excedido de peso"{
+	residuosRadioactivos.peso(2600)
+	camion.cargar(residuosRadioactivos)
+	assert.that(camion.excedidoDePeso())
+}
+test "objetos mas peligrosos que algo "{
+	camion.cargar(residuosRadioactivos)
+	camion.cargar(bateriaAntiaerea)
+	camion.cargar(paqueteDeLadrillos)
+	camion.cargar(knightRider)
+	camion.cargar(bumblebee)
+	assert.equals([residuosRadioactivos,bateriaAntiaerea,bumblebee]==camion.objetosMasPeligrososQue(knightRider))
+	
+}
+test " no puede circular en la ruta"{
+	camion.cargar(residuosRadioactivos)
+	camion.cargar(bateriaAntiaerea)
+	camion.cargar(paqueteDeLadrillos)
+	camion.cargar(knightRider)
+	camion.cargar(bumblebee)
+	assert.notThat(camion.puedeCircularEnRuta(10))
+}
+test " lista de pesos "{
+	camion.cargar(residuosRadioactivos)
+	camion.cargar(bateriaAntiaerea)
+	assert.equals([20,300]==camion.pesos())
+}
+test "bultos que ocupan las cosas"{
+	paqueteDeLadrillos.cantidadLadrillos(103)
+	camion.cargar(paqueteDeLadrillos)
+	assert.equals(2==camion.totalBultos())
+}
+test "cantBultos"{
+	camion.cargar(knightRider)
+	camion.cargar(new PaqueteDeLadrillos(cantLadrillos=80))
+	 assert.equals(5,camion.cantBultos())
+}
